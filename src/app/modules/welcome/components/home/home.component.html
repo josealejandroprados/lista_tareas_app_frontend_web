@@ -14,17 +14,19 @@
             </thead>
             <tbody>
                 <tr *ngFor="let task of tasks; let i=index">
-                    <td>{{i}}</td>
+                    <td>{{i+1}}</td>
                     <td>{{task.name}}</td>
                     <td>{{task.description}}</td>
                     <td>{{task.state}}</td>
                     <td>
-                        <button class="btn btn-outline-success btn-sm">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                        <button class="btn btn-outline-success btn-sm">
-                            <i class="bi bi-trash"></i>
-                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-outline-success btn-sm">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
                     </td>
                 </tr>
                 <tr *ngIf="tasks.length<=0">

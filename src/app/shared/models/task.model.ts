@@ -1,18 +1,24 @@
 export class TaskModel{
     constructor(
-        id:string,
+        _id:string,
         name:string,
         description:string,
-        state:string
+        state:string,
+        createdAt:string,
+        updatedAt:string
     ){
-        this.id = id;
+        this._id = _id;
         this.name = name;
         this.description = description;
         this.state = state;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    id!:string;
+    _id!:string;
     name!:string;
     description!:string;
     state!:string;
+    createdAt!:string;
+    updatedAt!:string;
 }

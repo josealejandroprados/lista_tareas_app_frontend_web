@@ -14,26 +14,26 @@ export class DataService {
 
   // obtener todos los registros de tareas
   getTasks(){
-    return this.http.get(`${this.baseUrl}/gettasks`);
+    return this.http.get<any>(`${this.baseUrl}/gettasks`);
   }
 
   // obtener una tarea con su id
   getTask(id:string){
-    return this.http.get(`${this.baseUrl}/gettask/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/gettask/${id}`);
   }
 
   // agregar una tarea
   addTask(task:any){
-    return this.http.post(`${this.baseUrl}/addtask`,task);
+    return this.http.post<any>(`${this.baseUrl}/addtask`,task);
   }
 
   // actualizar una tarea
   updateTask(task:any){
-    return this.http.put(`${this.baseUrl}/updatetask`,task);
+    return this.http.put<any>(`${this.baseUrl}/updatetask`,task);
   }
 
   // eliminar una tarea
   deleteTask(id:string){
-    return this.http.delete(`${this.baseUrl}/deletetask/${id}`);
+    return this.http.delete<any>(`${this.baseUrl}/deletetask/${id}`);
   }
 }

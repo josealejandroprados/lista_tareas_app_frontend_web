@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskModel } from 'src/app/shared/models/task.model';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit{
 
-  tasks:any[]=[];
+  tasks:TaskModel[]=[];
 
   ngOnInit(): void {
-    // 
+    this.obtenerTareas();
   }
 
-  constructor(){}
+  constructor(
+    private data:DataService
+  ){}
 
+  private obtenerTareas(){
+    this.tasks = [];
+
+    this.data.getTasks().subscribe(datos => {
+      this.tasks = datos.tasks;
+      console.log(this.tasks)
+    });
+  }
 }
