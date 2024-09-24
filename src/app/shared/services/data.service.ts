@@ -28,8 +28,8 @@ export class DataService {
   }
 
   // actualizar una tarea
-  updateTask(task:any){
-    return this.http.put<any>(`${this.baseUrl}/updatetask`,task);
+  updateTask(task:any, id:string){
+    return this.http.put<any>(`${this.baseUrl}/updatetask/${id}`,task);
   }
 
   // eliminar una tarea

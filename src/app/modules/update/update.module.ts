@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UpdateRoutingModule } from './update-routing.module';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { UpdateTaskComponent } from './components/update-task/update-task.compon
   ],
   imports: [
     CommonModule,
-    UpdateRoutingModule
+    UpdateRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class UpdateModule { }
