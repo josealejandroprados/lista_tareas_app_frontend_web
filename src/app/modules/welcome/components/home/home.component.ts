@@ -19,12 +19,36 @@ export class HomeComponent implements OnInit{
     private data:DataService
   ){}
 
+  // metodo para obtener todas las tareas
   private obtenerTareas(){
+    // iniciar el array como vacío
     this.tasks = [];
 
+    // llamar al servicio para obtener las tareas
     this.data.getTasks().subscribe(datos => {
-      this.tasks = datos.tasks;
-      console.log(this.tasks)
+      if(datos.message=='exito'){
+        // tareas obtenidas con exito
+        this.tasks = datos.tasks;
+      }
+      else{
+        console.log('error al obtener las tareas');
+      }
+    });
+  }
+
+  // eliminar tarea
+  eliminarTarea(id:string){
+    // llamo al servicio
+    this.data.deleteTask(id).subscribe(resultado => {
+      if(resultado.message=='exito'){
+        alert('tarea eliminada con exito');
+
+        // obtener tareas
+        this.obtenerTareas();
+      }
+      else{
+        alert('error al eliminar la tarea');
+      }
     });
   }
 }

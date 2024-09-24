@@ -20,10 +20,10 @@
                     <td>{{task.state}}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-outline-success btn-sm">
+                            <a class="btn btn-outline-success btn-sm" [routerLink]="['/updatetask',task._id]">
                                 <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="btn btn-outline-danger btn-sm">
+                            </a>
+                            <button class="btn btn-outline-danger btn-sm" (click)="eliminarTarea(task._id)">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>
