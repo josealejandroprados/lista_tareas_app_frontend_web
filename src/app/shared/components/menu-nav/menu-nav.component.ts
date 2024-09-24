@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class MenuNavComponent {
 
+  enlace_linkedIn = 'https://www.linkedin.com/in/jos%C3%A9-alejandro-prados-70930b169/';
+
 }

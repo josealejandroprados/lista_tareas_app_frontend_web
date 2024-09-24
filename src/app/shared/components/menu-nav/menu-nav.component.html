@@ -1,1 +1,25 @@
-<p>menu-nav works!</p>
+<nav class="navbar navbar-expand-md bg-menu" data-bs-theme="dark">
+    <div class="container-fluid">
+      <img src="../../../../assets/logo/LOGO1.jpg" alt="" class="navbar-brand ms-3" style="height: 70px;">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-navegacion" aria-controls="menu-navegacion" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu-navegacion">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="home" routerLinkActive="active" ariaCurrentWhenActive="page">Inicio</a>
+            </li>
+            <!-- agregar tarea -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="addtask" routerLinkActive="active" ariaCurrentWhenActive="page">Agregar Tarea</a>
+            </li>
+            <!-- perfil de linkedIn -->
+            <li class="nav-item ms-4">
+              <a class="nav-link" [href]="enlace_linkedIn" target="_blank">
+                <i class="bi bi-linkedin h4 text-white"></i>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+</nav>
