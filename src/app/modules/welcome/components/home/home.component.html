@@ -1,1 +1,40 @@
-<p>home works!</p>
+<section class="container mt-4">
+    <h4 class="text-center text-primary">Lista de Tareas</h4>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasks; let i=index">
+                    <td>{{i}}</td>
+                    <td>{{task.name}}</td>
+                    <td>{{task.description}}</td>
+                    <td>{{task.state}}</td>
+                    <td>
+                        <button class="btn btn-outline-success btn-sm">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-outline-success btn-sm">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="tasks.length<=0">
+                    <td colspan="5">
+                        <div class="alert alert-danger text-center">
+                            No hay tareas
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
