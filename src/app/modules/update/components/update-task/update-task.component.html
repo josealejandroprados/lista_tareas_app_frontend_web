@@ -1,36 +1,42 @@
 <section class="container mt-4">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="text-primary text-center mb-4">Modificar Tarea</h4>
-
-            <form [formGroup]="formUpdateTask" (ngSubmit)="updateTask()">
-                <!-- nombre -->
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" formControlName="name" name="name" id="name" class="form-control form-control-sm" placeholder="Ingrese el nombre de la tarea">
-                </div>
-
-                <!-- descripcion -->
-                <div class="mb-3">
-                    <label for="description" class="form-label">Descripción</label>
-                    <textarea formControlName="description" name="description" id="description" class="form-control form-control-sm" placeholder="ingrese la descripcion de la tarea"></textarea>
-                </div>
-
-                <!-- estado de la tarea -->
-                 <div class="mb-3">
-                    <select formControlName="state" class="form-select form-select-sm">
-                        <option value="No iniciada">No iniciada</option>
-                        <option value="En progreso">En progreso</option>
-                        <option value="Completada">Completada</option>
-                    </select>
-                 </div>
-
-                <!-- botones -->
-                <div class="mb-3 btn-group">
-                    <button class="btn btn-outline-primary btn-sm" type="submit">Modificar</button>
-                    <a routerLink="/home" class="btn btn-outline-danger btn-sm">Cancelar</a>
-                </div>
-            </form>
+    <div class="d-flex justify-content-center row">
+        <div class="card col-11 col-md-8 col-lg-6">
+            <div class="card-body">
+                <h4 class="text-primary text-center mb-4">Modificar Tarea</h4>
+    
+                <form [formGroup]="formUpdateTask" (ngSubmit)="updateTask()">
+                    <!-- nombre -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" formControlName="name" name="name" id="name" class="form-control form-control-sm" placeholder="Ingrese el nombre de la tarea">
+                    </div>
+    
+                    <!-- descripcion -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descripción</label>
+                        <textarea rows="5" formControlName="description" name="description" id="description" class="form-control form-control-sm" placeholder="ingrese la descripcion de la tarea"></textarea>
+                    </div>
+    
+                    <!-- estado de la tarea -->
+                     <div class="mb-3">
+                        <select formControlName="state" class="form-select form-select-sm">
+                            <option value="No iniciada">No iniciada</option>
+                            <option value="En progreso">En progreso</option>
+                            <option value="Completada">Completada</option>
+                        </select>
+                     </div>
+    
+                    <!-- botones -->
+                    <div class="mb-3 btn-group">
+                        <button class="btn btn-outline-primary btn-sm" type="submit" [disabled]="formUpdateTask.invalid">
+                            Modificar
+                        </button>
+                        <a routerLink="/home" class="btn btn-outline-danger btn-sm">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
