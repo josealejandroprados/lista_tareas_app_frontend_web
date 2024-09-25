@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,13 @@ export class DataService {
   private baseUrl = 'http://localhost:3000';
 
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    private auth:AuthService
   ){}
 
   // obtener todos los registros de tareas
   getTasks(){
-    return this.http.get<any>(`${this.baseUrl}/gettasks`);
+    return this.http.get<any>(`${this.baseUrl}/gettasks/${this.auth.getIdUser()}`);
   }
 
   // obtener una tarea con su id

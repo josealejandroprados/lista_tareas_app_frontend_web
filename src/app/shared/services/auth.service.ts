@@ -46,6 +46,11 @@ export class AuthService {
   getUser(){
     return this.cookie.get('user');
   }
+
+  // metodo que retorna el id del usuario guardado en cookies
+  getIdUser(){
+    return this.cookie.get('id');
+  }
   
   // cerrar sesión/logout
   logout(){
