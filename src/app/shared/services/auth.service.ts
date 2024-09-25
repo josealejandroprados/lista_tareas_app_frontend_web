@@ -29,6 +29,7 @@ export class AuthService {
     this.cookie.set('user',user.usuario);
     this.cookie.set('token', user.token);
     this.cookie.set('rol', user.rol);
+    this.cookie.set('id', user.id);
   }
 
   // metodo para eliminar todas las credenciales
@@ -46,4 +47,14 @@ export class AuthService {
     return this.cookie.get('user');
   }
   
+  // cerrar sesión/logout
+  logout(){
+    // eliminar cookies
+    this.deleteCredentials();
+  }
+
+  // eliminar cuenta de usuario
+  deleteAccount(){
+    return this.http.delete<any>(`${this.baseUrl}/deleteaccount/${this.cookie.get('id')}`);
+  }
 }

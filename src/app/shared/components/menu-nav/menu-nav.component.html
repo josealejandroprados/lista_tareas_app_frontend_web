@@ -46,15 +46,14 @@
                 <br>
                 <li>
                   <div class="d-flex flex-column">
-                
-                <div class="d-grid gap-2">
-                  <button class="btn btn-outline-primary btn-sm" type="button" (click)="consultaAcciones('logout')">
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-outline-primary btn-sm" type="button" (click)="consultaAcciones('logout')">
                     Cerrar Sesión
-                  </button>
-                  <button class="btn btn-outline-danger btn-sm" type="button" (click)="consultaAcciones('deleteAccount')">
+                      </button>
+                      <button class="btn btn-outline-danger btn-sm" type="button" (click)="consultaAcciones('deleteAccount')">
                     Eliminar Cuenta
-                  </button>
-                </div>
+                      </button>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -62,13 +61,13 @@
         </ul>
         <ul class="navbar-nav ms-auto me-5" *ngIf="!estalogueado()">
           <!-- login -->
-          <li class="nav-item ms-auto">
+          <li class="nav-item ms-2 ms-md-auto ms-lg-auto">
             <a class="nav-link" routerLink="login" routerLinkActive="active" ariaCurrentWhenActive="page">
               Iniciar Sesión
             </a>
           </li>
           <!-- registro -->
-          <li class="nav-item">
+          <li class="nav-item ms-2 ms-md-auto ms-lg-auto">
             <a class="nav-link" routerLink="register" routerLinkActive="active" ariaCurrentWhenActive="page">
               Registrarse
             </a>
@@ -77,3 +76,53 @@
       </div>
     </div>
 </nav>
+
+<!-- Modal Consulta al Usuario por una accion: Aceptar o Cancelar-->
+<div class="modal fade" id="modal-acciones" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title fs-5 text-primary" id="staticBackdropLabel">{{modalAcciones.title}}</h5>
+          <button type="button" class="btn-close" (click)="cerrarModalConsulta()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <p style="font-size: 0.9rem;">{{modalAcciones.textoBodyModal}}</p>
+      </div>
+      <div class="modal-footer">
+          <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-outline-primary" (click)="ok()">
+              Aceptar
+            </button>
+            <button type="button" class="btn btn-outline-danger" (click)="cerrarModalConsulta()">
+              Cancelar
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal luego de eliminar cuenta o cerrar sesion-->
+<div class="modal" id="modal-execute-action" data-bs-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title fs-5 text-primary" id="staticBackdropLabel">{{modalExecute.title}}</h3>
+        <button type="button" class="btn-close" *ngIf="modalExecute.hab_btn" (click)="aceptar()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center" *ngIf="!modalExecute.hab_btn">
+          <div class="spinner-border text-teal" role="status">
+              <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <p class="text-center">{{modalExecute.textoBodyModal}}</p>
+      </div>
+      <div class="modal-footer" *ngIf="modalExecute.hab_btn">
+        <button type="button" class="btn btn-outline-primary" (click)="aceptar()">
+          {{modalExecute.textoBtn}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

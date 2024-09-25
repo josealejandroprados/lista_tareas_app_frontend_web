@@ -36,4 +36,9 @@ export class DataService {
   deleteTask(id:string){
     return this.http.delete<any>(`${this.baseUrl}/deletetask/${id}`);
   }
+
+  // eliminar todas las tareas
+  deleteAllTasks(){
+    return this.http.delete<any>(`${this.baseUrl}/deletealltasks`);
+  }
 }
