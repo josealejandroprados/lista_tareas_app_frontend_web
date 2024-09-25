@@ -41,4 +41,9 @@ export class AuthService {
     return this.cookie.get('token') ? true : false;
   }
 
+  // obtener usuario
+  getUser(){
+    return this.cookie.get('user');
+  }
+  
 }

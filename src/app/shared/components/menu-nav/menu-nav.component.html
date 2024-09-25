@@ -5,13 +5,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="menu-navegacion">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="home" routerLinkActive="active" ariaCurrentWhenActive="page">Inicio</a>
+        <ul class="navbar-nav flex-grow-1 pe-3">
+          <!-- inicio/home -->
+            <li class="nav-item" *ngIf="estalogueado()">
+              <a class="nav-link" routerLink="home" routerLinkActive="active" ariaCurrentWhenActive="page">
+                Inicio
+              </a>
             </li>
             <!-- agregar tarea -->
-            <li class="nav-item">
-              <a class="nav-link" routerLink="addtask" routerLinkActive="active" ariaCurrentWhenActive="page">Agregar Tarea</a>
+            <li class="nav-item" *ngIf="estalogueado()">
+              <a class="nav-link" routerLink="addtask" routerLinkActive="active" ariaCurrentWhenActive="page">
+                Agregar Tarea
+              </a>
             </li>
             <!-- perfil de linkedIn -->
             <li class="nav-item ms-4">
@@ -19,6 +24,55 @@
                 <i class="bi bi-linkedin h4 text-white"></i>
               </a>
             </li>
+            <!-- link de mi github -->
+            <li class="nav-item ms-4">
+              <a class="nav-link" [href]="enlace_github_proyecto" target="_blank">
+                <i class="bi bi-github h4 text-white"></i>
+              </a>
+            </li>
+            <!-- cuadro de inicio de sesion -->
+            <li class="nav-item dropdown me-0 me-md-0 me-lg-5 ms-4 ms-md-auto ms-lg-auto" *ngIf="estalogueado()">
+              <a class="dropdown-toggle text-white me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="cuadro-usuario">
+                <i class="bi bi-person-circle h4"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end p-2" style="width: 300px;" data-bs-theme="light">
+                <li class="h5 text-primary text-center">
+                  Bienvenido <i class="bi bi-emoji-laughing"></i>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li style="font-size: 0.8rem;">
+                  <strong class="ms-2">User: </strong><i class="text-primary">{{getUser()}}</i>
+                </li>
+                <br>
+                <li>
+                  <div class="d-flex flex-column">
+                
+                <div class="d-grid gap-2">
+                  <button class="btn btn-outline-primary btn-sm" type="button" (click)="consultaAcciones('logout')">
+                    Cerrar Sesión
+                  </button>
+                  <button class="btn btn-outline-danger btn-sm" type="button" (click)="consultaAcciones('deleteAccount')">
+                    Eliminar Cuenta
+                  </button>
+                </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav ms-auto me-5" *ngIf="!estalogueado()">
+          <!-- login -->
+          <li class="nav-item ms-auto">
+            <a class="nav-link" routerLink="login" routerLinkActive="active" ariaCurrentWhenActive="page">
+              Iniciar Sesión
+            </a>
+          </li>
+          <!-- registro -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="register" routerLinkActive="active" ariaCurrentWhenActive="page">
+              Registrarse
+            </a>
+          </li>
         </ul>
       </div>
     </div>
