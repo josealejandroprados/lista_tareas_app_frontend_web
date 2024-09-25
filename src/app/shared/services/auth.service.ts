@@ -24,14 +24,21 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/login`,user);
   }
 
+  // metodo para guardar las credenciales luego de hacer login
   saveCredentials(user:any){
     this.cookie.set('user',user.usuario);
     this.cookie.set('token', user.token);
     this.cookie.set('rol', user.rol);
   }
 
+  // metodo para eliminar todas las credenciales
   deleteCredentials(){
     this.cookie.deleteAll();
+  }
+
+  // metodo que devuelve true si existe un token, es decir si estoy logueado
+  estalogueado(){
+    return this.cookie.get('token') ? true : false;
   }
 
 }
