@@ -7,7 +7,8 @@ import { AuthService } from './auth.service';
 })
 export class DataService {
 
-  private baseUrl = 'http://localhost:3000';
+  // private baseUrl = 'http://localhost:3000';
+  private baseUrl = 'https://lista-tareas-app-backend.vercel.app';
 
   constructor(
     private http:HttpClient,
