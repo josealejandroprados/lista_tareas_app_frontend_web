@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +62,12 @@ export class AuthService {
   // eliminar cuenta de usuario
   deleteAccount(){
     return this.http.delete<any>(`${this.baseUrl}/deleteaccount/${this.cookie.get('id')}`);
+  }
+
+  // metodo para verificar si un email está disponible para registro
+  verifyEmailAvailable(email:string){
+    return this.http.get<any>(`${this.baseUrl}/emailAvailable/${email}`).pipe(
+      map(respuesta => respuesta.available)
+    );
   }
 }

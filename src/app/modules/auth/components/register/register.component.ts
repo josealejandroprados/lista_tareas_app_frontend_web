@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class RegisterComponent {
 
+  emailAvailable:boolean = true;
+
   formRegister = new FormGroup({
     'nombre': new FormControl('',Validators.required),
     'apellido': new FormControl('',Validators.required),
@@ -24,16 +26,39 @@ export class RegisterComponent {
 
   registrar(){
     if(this.formRegister.valid){
-      // llamo al servicio
-      this.auth.register(this.formRegister.value).subscribe(resultado => {
-        if(resultado.message=='exito'){
-          alert('registro realizado con exito');
-          this.router.navigate(['login']);
+      // verificar si el email ingresado por el usuario está disponible en la BBDD
+      this.auth.verifyEmailAvailable(this.formRegister.value.email || '').subscribe(resultado => {
+        if(resultado){
+          // si resultado = true => email si está disponible
+          // realizar registro
+          // llamo al servicio
+          this.auth.register(this.formRegister.value).subscribe(resultado => {
+            if(resultado.message=='exito'){
+              alert('registro realizado con exito');
+              this.router.navigate(['login']);
+            }
+            else{
+              alert('ha ocurrido un error');
+            }
+          });
         }
         else{
-          alert('ha ocurrido un error');
+          // si resultado = false => email no disponible
+          // activar alert
+          this.emailAvailable = false;
         }
       });
+      
+    }
+  }
+
+  /* metodo que cambia el valor de emailAvailable de false a true cuando el usuario escribe un nuevo
+  email luego de que el primero que escribió resultó no disponible para registro
+  esto es para ocultar el alert cuando el usuario escribe otro email
+  */
+  hideAlertEmailAvailable(){
+    if(this.emailAvailable == false){
+      this.emailAvailable = true;
     }
   }
 
