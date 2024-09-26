@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { WelcomeRoutingModule } from './welcome-routing.module';
 import { HomeComponent } from './components/home/home.component';
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     CommonModule,
-    WelcomeRoutingModule
-  ]
+    WelcomeRoutingModule,
+    SharedModule
+]
 })
 export class WelcomeModule { }

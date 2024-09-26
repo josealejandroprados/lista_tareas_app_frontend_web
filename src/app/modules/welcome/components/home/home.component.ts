@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalCargaComponent } from 'src/app/shared/components/modal-carga/modal-carga.component';
+import { ModalModel } from 'src/app/shared/models/modal.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
 import { DataService } from 'src/app/shared/services/data.service';
 
@@ -10,6 +12,17 @@ import { DataService } from 'src/app/shared/services/data.service';
 export class HomeComponent implements OnInit{
 
   tasks:TaskModel[]=[];
+
+  // modelo de modal de eliminar tarea
+  modalDelete:ModalModel = {
+    title: 'Eliminar Tarea',
+    hab_btn: false,
+    textoBodyModal: '',
+    textoBtn: 'Aceptar'
+  }
+
+  // accedo al componente hijo modal-carga
+  @ViewChild(ModalCargaComponent) modalAccion!:ModalCargaComponent;
 
   ngOnInit(): void {
     this.obtenerTareas();
@@ -38,17 +51,30 @@ export class HomeComponent implements OnInit{
 
   // eliminar tarea
   eliminarTarea(id:string){
+    this.modalDelete.textoBodyModal = 'Eliminando tarea...';
+    // abrir modal
+    this.modalAccion.abrirModal();
+
     // llamo al servicio
     this.data.deleteTask(id).subscribe(resultado => {
       if(resultado.message=='exito'){
-        alert('tarea eliminada con exito');
-
+        // exito al eliminar la tarea
         // obtener tareas
         this.obtenerTareas();
+
+        this.modalDelete.textoBodyModal = 'Tarea eliminada con exito';
+        this.modalDelete.hab_btn = true;
       }
       else{
-        alert('error al eliminar la tarea');
+        this.modalDelete.textoBodyModal = 'Error al eliminar la tarea';
+        this.modalDelete.hab_btn = true;
       }
     });
+  }
+
+  aceptar(){
+    // reiniciar variables de modal
+    this.modalDelete.textoBodyModal = '';
+    this.modalDelete.hab_btn = false;
   }
 }
