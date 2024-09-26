@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { ModalCargaComponent } from './components/modal-carga/modal-carga.component';
 
 
 
 @NgModule({
   declarations: [
     MenuNavComponent,
-    FooterComponent
+    FooterComponent,
+    ModalCargaComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     MenuNavComponent,
-    FooterComponent
+    FooterComponent,
+    ModalCargaComponent
   ]
 })
 export class SharedModule { }
