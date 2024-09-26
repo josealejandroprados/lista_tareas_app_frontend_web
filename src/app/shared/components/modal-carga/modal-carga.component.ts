@@ -13,7 +13,7 @@ export class ModalCargaComponent implements OnInit{
   @Input() modalAccion!:ModalModel;
   @Output() complete = new EventEmitter<void>();
 
-  varModal:any;
+  private varModal:any;
 
   ngOnInit(): void {
     this.varModal = new window.bootstrap.Modal(
