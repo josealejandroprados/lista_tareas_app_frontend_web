@@ -22,9 +22,9 @@ export class AddTaskComponent {
     'state': new FormControl('No iniciada')
   });
 
-  // modelo de modal de registro
+  // modelo de modal de agregar tarea
   modalAdd:ModalModel = {
-    title: 'Iniciar Sesión',
+    title: 'Agregar Tarea',
     hab_btn: false,
     textoBodyModal: '',
     textoBtn: 'Aceptar'
@@ -72,7 +72,7 @@ export class AddTaskComponent {
   }
 
   aceptar(){
-    // verifico si la tarea se realizó con éxito
+    // verifico si la tarea se agregó con éxito
     if(this.modalAdd.textoBodyModal=='Tarea agregada con exito'){
       // tarea agregada con exito, reiniciar variables de modal y redirigir a home
       this.reiniciarVariablesModal()

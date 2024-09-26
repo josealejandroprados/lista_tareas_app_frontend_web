@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UpdateRoutingModule } from './update-routing.module';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     UpdateRoutingModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    SharedModule
+]
 })
 export class UpdateModule { }

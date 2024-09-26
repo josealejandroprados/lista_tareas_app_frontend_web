@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalCargaComponent } from 'src/app/shared/components/modal-carga/modal-carga.component';
+import { ModalModel } from 'src/app/shared/models/modal.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
 import { DataService } from 'src/app/shared/services/data.service';
 
@@ -18,6 +20,17 @@ export class UpdateTaskComponent implements OnInit{
     'description': new FormControl('', Validators.required),
     'state': new FormControl('')
   });
+
+  // modelo de modal de actualizar/modificar tarea
+  modalUpdate:ModalModel = {
+    title: 'Modificar Tarea',
+    hab_btn: false,
+    textoBodyModal: '',
+    textoBtn: 'Aceptar'
+  }
+
+  // accedo al componente hijo modal-carga
+  @ViewChild(ModalCargaComponent) modalAccion!:ModalCargaComponent;
   
   ngOnInit(): void {
     // obtengo el id como parametro de ruta
@@ -35,17 +48,42 @@ export class UpdateTaskComponent implements OnInit{
   // metodo para actualizar tarea llamado desde el formulario (submit)
   updateTask(){
     if(this.formUpdateTask.valid){
+      this.modalUpdate.textoBodyModal = 'Modificando tarea...';
+      // abrir modal
+      this.modalAccion.abrirModal();
+
       // llamo al servicio para actualizar la tarea
       this.data.updateTask(this.formUpdateTask.value,this.id).subscribe(resultado => {
         if(resultado.message=='exito'){
-          alert('Tarea modificada con exito');
-          this.router.navigate(['/home']);
+          this.modalUpdate.textoBodyModal = 'Tarea modificada con exito';
+          this.modalUpdate.hab_btn = true;
         }
         else{
-          alert('ha ocurrido un error, no se pudo modificar la tarea');
+          this.modalUpdate.textoBodyModal = 'Ha ocurrido un error, no se pudo modificar la tarea';
+          this.modalUpdate.hab_btn = true;
         }
       });
     }
+  }
+
+  aceptar(){
+    // verifico si la tarea se modificó con éxito
+    if(this.modalUpdate.textoBodyModal=='Tarea modificada con exito'){
+      // tarea agregada con exito, reiniciar variables de modal y redirigir a home
+      this.reiniciarVariablesModal()
+
+      this.router.navigate(['/home']);
+    }
+    else{
+      // error al agregar la tarea => reiniciar variables de modal, no redirigir
+      this.reiniciarVariablesModal();
+    }
+  }
+
+  private reiniciarVariablesModal(){
+    // reinicio varibles de modal
+    this.modalUpdate.textoBodyModal = '';
+    this.modalUpdate.hab_btn = false;
   }
 
   private obtenerTarea(){
