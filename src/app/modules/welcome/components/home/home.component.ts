@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalCargaComponent } from 'src/app/shared/components/modal-carga/modal-carga.component';
 import { ModalConsultaComponent } from 'src/app/shared/components/modal-consulta/modal-consulta.component';
+import { ModalConsulta } from 'src/app/shared/models/modal.consulta.model';
 import { ModalModel } from 'src/app/shared/models/modal.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
 import { DataService } from 'src/app/shared/services/data.service';
@@ -19,13 +20,17 @@ export class HomeComponent implements OnInit{
   modalDelete:ModalModel = {
     title: 'Eliminar Tarea',
     hab_btn: false,
-    textoBodyModal: '¿Estás seguro que deseas eliminar la tarea?',
+    textoBodyModal: '',
     textoBtn: 'Aceptar'
   }
-
   // accedo al componente hijo modal-carga
   @ViewChild(ModalCargaComponent) modalAccion!:ModalCargaComponent;
 
+  // modelo de modalConsulta para eliminacion de tarea
+  modalQueryDelete:ModalConsulta = {
+    title: 'Eliminar Tarea',
+    textoBodyModal: '¿Estás seguro que deseas eliminar la tarea?',
+  }
   // accedo al componente hijo modal-consulta
   @ViewChild(ModalConsultaComponent) modalConsult!:ModalConsultaComponent;
 
