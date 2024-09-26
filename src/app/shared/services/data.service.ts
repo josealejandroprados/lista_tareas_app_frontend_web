@@ -41,6 +41,6 @@ export class DataService {
 
   // eliminar todas las tareas
   deleteAllTasks(){
-    return this.http.delete<any>(`${this.baseUrl}/deletealltasks`);
+    return this.http.delete<any>(`${this.baseUrl}/deletealltasks/${this.auth.getIdUser()}`);
   }
 }

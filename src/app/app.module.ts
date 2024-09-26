@@ -7,7 +7,8 @@ import { SharedModule } from "./shared/shared.module";
 import { AuthService } from './shared/services/auth.service';
 import { DataService } from './shared/services/data.service';
 import { CookieService } from 'ngx-cookie-service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,12 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     AuthService,
     DataService,
-    CookieService
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
