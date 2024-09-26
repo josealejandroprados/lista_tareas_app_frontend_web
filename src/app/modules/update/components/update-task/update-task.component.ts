@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalCargaInicialComponent } from 'src/app/shared/components/modal-carga-inicial/modal-carga-inicial.component';
 import { ModalCargaComponent } from 'src/app/shared/components/modal-carga/modal-carga.component';
 import { ModalModel } from 'src/app/shared/models/modal.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
@@ -31,6 +32,9 @@ export class UpdateTaskComponent implements OnInit{
 
   // accedo al componente hijo modal-carga
   @ViewChild(ModalCargaComponent) modalAccion!:ModalCargaComponent;
+
+  // accedo al componente hijo modal-carga-inicial
+  @ViewChild(ModalCargaInicialComponent) modalInicial!:ModalCargaInicialComponent;
   
   ngOnInit(): void {
     // obtengo el id como parametro de ruta
@@ -102,6 +106,8 @@ export class UpdateTaskComponent implements OnInit{
       'description': task.description,
       'state': task.state
     });
+    
+    this.modalInicial.cerrarModal();
   }
 
 }

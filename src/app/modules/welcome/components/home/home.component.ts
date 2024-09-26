@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalCargaInicialComponent } from 'src/app/shared/components/modal-carga-inicial/modal-carga-inicial.component';
 import { ModalCargaComponent } from 'src/app/shared/components/modal-carga/modal-carga.component';
 import { ModalConsultaComponent } from 'src/app/shared/components/modal-consulta/modal-consulta.component';
 import { ModalConsulta } from 'src/app/shared/models/modal.consulta.model';
@@ -34,6 +35,9 @@ export class HomeComponent implements OnInit{
   // accedo al componente hijo modal-consulta
   @ViewChild(ModalConsultaComponent) modalConsult!:ModalConsultaComponent;
 
+  // accedo al componente hijo modal-carga-inicial
+  @ViewChild(ModalCargaInicialComponent) modalInicial!:ModalCargaInicialComponent;
+
   ngOnInit(): void {
     this.obtenerTareas();
   }
@@ -52,9 +56,11 @@ export class HomeComponent implements OnInit{
       if(datos.message=='exito'){
         // tareas obtenidas con exito
         this.tasks = datos.tasks;
+        this.modalInicial.cerrarModal();
       }
       else{
         console.log('error al obtener las tareas');
+        this.modalInicial.cerrarModal();
       }
     });
   }
