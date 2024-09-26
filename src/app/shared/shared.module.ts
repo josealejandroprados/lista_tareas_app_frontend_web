@@ -4,6 +4,7 @@ import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ModalCargaComponent } from './components/modal-carga/modal-carga.component';
+import { ModalConsultaComponent } from './components/modal-consulta/modal-consulta.component';
 
 
 
@@ -11,7 +12,8 @@ import { ModalCargaComponent } from './components/modal-carga/modal-carga.compon
   declarations: [
     MenuNavComponent,
     FooterComponent,
-    ModalCargaComponent
+    ModalCargaComponent,
+    ModalConsultaComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { ModalCargaComponent } from './components/modal-carga/modal-carga.compon
   exports: [
     MenuNavComponent,
     FooterComponent,
-    ModalCargaComponent
+    ModalCargaComponent,
+    ModalConsultaComponent
   ]
 })
 export class SharedModule { }

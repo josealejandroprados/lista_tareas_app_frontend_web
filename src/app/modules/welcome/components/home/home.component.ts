@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalCargaComponent } from 'src/app/shared/components/modal-carga/modal-carga.component';
+import { ModalConsultaComponent } from 'src/app/shared/components/modal-consulta/modal-consulta.component';
 import { ModalModel } from 'src/app/shared/models/modal.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
 import { DataService } from 'src/app/shared/services/data.service';
@@ -12,17 +13,21 @@ import { DataService } from 'src/app/shared/services/data.service';
 export class HomeComponent implements OnInit{
 
   tasks:TaskModel[]=[];
+  idSelected!:string;
 
   // modelo de modal de eliminar tarea
   modalDelete:ModalModel = {
     title: 'Eliminar Tarea',
     hab_btn: false,
-    textoBodyModal: '',
+    textoBodyModal: '¿Estás seguro que deseas eliminar la tarea?',
     textoBtn: 'Aceptar'
   }
 
   // accedo al componente hijo modal-carga
   @ViewChild(ModalCargaComponent) modalAccion!:ModalCargaComponent;
+
+  // accedo al componente hijo modal-consulta
+  @ViewChild(ModalConsultaComponent) modalConsult!:ModalConsultaComponent;
 
   ngOnInit(): void {
     this.obtenerTareas();
@@ -49,14 +54,23 @@ export class HomeComponent implements OnInit{
     });
   }
 
+  consultaEliminarTarea(id:string){
+    // guardo el id de la tarea en la que hice click para eliminar
+    this.idSelected = id;
+
+
+    // abrir modal de consulta
+    this.modalConsult.abrirModalConsulta();
+  }
+
   // eliminar tarea
-  eliminarTarea(id:string){
+  eliminarTarea(){
     this.modalDelete.textoBodyModal = 'Eliminando tarea...';
     // abrir modal
     this.modalAccion.abrirModal();
 
     // llamo al servicio
-    this.data.deleteTask(id).subscribe(resultado => {
+    this.data.deleteTask(this.idSelected).subscribe(resultado => {
       if(resultado.message=='exito'){
         // exito al eliminar la tarea
         // obtener tareas

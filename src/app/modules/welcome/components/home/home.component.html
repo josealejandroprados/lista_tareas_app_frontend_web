@@ -23,7 +23,7 @@
                             <a class="btn btn-outline-success btn-sm" [routerLink]="['/updatetask',task._id]">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <button class="btn btn-outline-danger btn-sm" (click)="eliminarTarea(task._id)">
+                            <button class="btn btn-outline-danger btn-sm" (click)="consultaEliminarTarea(task._id)">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>
@@ -42,3 +42,5 @@
 </section>
 
 <app-modal-carga [modalAccion]="modalDelete" (complete)="aceptar()"></app-modal-carga>
+
+<app-modal-consulta [modalQuery]="modalDelete" (aceptar)="eliminarTarea()"></app-modal-consulta>
